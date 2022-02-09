@@ -1,0 +1,23 @@
+1- Set uma rota POST "/api/calcaculateloan"
+
+2- O body do request é composto por esse json:
+    {
+        "carprice": ${preço do carro},
+        "downpayment": ${valor da entrada do empréstimo},
+        "tradeinvalue": ${valor de troca (opcional)},
+        "lengthofloan": ${quantidade de meses do empréstimo},
+        "rate": ${juros anual}
+    }
+
+3 - Calcule a parcela mensal usando a formula payment!
+    OBS: o parâmetro RATE da função da função payment deve ser obtido com a função getRates(FRONTEND_RATE)["monthlyRealNetRate"], onde FRONT_RATE é o valor rate": ${juros anual}" contido no request para pegar o juros após a inflação
+
+2- O body do response é composto por esse json:
+    {
+        "carprice",
+        "downpayment",
+        "tradeinvalue",
+        "totalInterestPaid" : ${juros totais pagos},
+        "totalLoanInterestPaid": ${soma de tradeinvalue e totalInterestPaid},
+        "monthlyPayment": ${resultado da função payment}
+    }
