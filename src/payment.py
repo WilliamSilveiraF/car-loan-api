@@ -21,4 +21,3 @@ def payment(rate, nper, pv, fv=0, type=0):
     return pmt
 
 
-print(payment(0.05, 48, 12000, 100000, 1))
