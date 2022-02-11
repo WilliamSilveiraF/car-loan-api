@@ -1,4 +1,6 @@
-IPCA = 0.1005
+def IPCA():
+    ipca=0.1005
+    return ipca
 
 def getRates(rawRate, IPCA):
     nominalGrossRate = ((1 + rawRate) * (1 + IPCA)) - 1

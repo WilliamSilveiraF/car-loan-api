@@ -2,9 +2,9 @@
 
 2- O body do request é composto por esse json:
     {
-        "carprice": ${preço do carro},
-        "downpayment": ${valor da entrada do empréstimo},
-        "tradeinvalue": ${valor de troca (opcional)},
+        "carprice": ${10},
+        "downpayment": ${'10'},
+        "tradeinvalue": ${"10"},
         "lengthofloan": ${quantidade de meses do empréstimo},
         "rate": ${juros anual}
     }
