@@ -8,9 +8,5 @@ def getRates(rawRate, IPCA):
     yearlyRealNetRate = ((1 + nominalNetRate) / (1 + IPCA)) - 1
     monthlyRealNetRate = ((1 + yearlyRealNetRate) ** (1 / 12)) - 1
 
-    return {
-        nominalGrossRate,
-        nominalNetRate,
-        yearlyRealNetRate,
-        monthlyRealNetRate
-    }
+    return monthlyRealNetRate
+    

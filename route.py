@@ -49,12 +49,15 @@ def pagamento():
 
     getRates.IPCA()
     nper = body['lengthofloan']
-    pv = body['downpayment']+body['tradeinvalue']
+    dp = body['downpayment']
+    ti = body['tradeinvalue']
     fv = body['carprice']
-    rate = getRates.getRates(body['rate'],ipca).monthlyRealNetRate
-    #parcela = payment.payment(rate, nper, pv, fv)
-    #floor(parcela,2)
-    Resposta = calculo(fv, body['downpayment'], body['tradeinvalue'],totalInterestPaid,totalLoanInterestPaid, monthlyPayment)   #!!!!!!!!!!
+    rate = getRates.getRates(body['rate'],ipca)
+    dados = payment.Payment(rate, nper,  dp, ti, fv)
+    parcela= floor(dados[0],2)
+    totalInterestPaid=dados[1]
+    totalLoanInterestPaid=dados[2]
+    Resposta = calculo(fv, dp, ti,totalInterestPaid,totalLoanInterestPaid, parcela)   
     return geraResponse(200, "parcela calculada",'Resposta', Resposta)
 
 
