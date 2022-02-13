@@ -1,6 +1,11 @@
 # credits: https://support.microsoft.com/en-us/office/pmt-function-0214da64-9a63-4996-bc20-214433fa6441
 
-def Payment(rate, nper, dp, ti, fv=0, type=0):
+def payment(rate, nper, pv, fv=0, type=0):
+    rate = rate / 12
+    print(f"Rate: {rate}\n"
+          f"Months: {nper}\n"
+          f"Presente Valor: {pv}\n"
+          f"Valor futuro: {fv}\n")
     # rate  - interest rate per month
     # nper  - number of periods (months)
     # pv    - present value
@@ -8,19 +13,16 @@ def Payment(rate, nper, dp, ti, fv=0, type=0):
     # type  - when the payments are due:
     #        0: end of the period, e.g. end of month (default)
     #        1: beginning of period
-    pv= dp+ti
     if rate == 0:
         return -((pv + fv) / nper)
 
-    pvif = pow(1 + rate, nper)
-    pmt = - rate / (pvif - 1) * -(pv * pvif + fv)
+    pvif = pow(1.0 + rate, nper)
+
+    pmt = rate / (pvif - 1.0) * -(pv * pvif + fv)
 
     if type == 1:
-        pmt /= (1 + rate)
+        pmt /= (1.0 + rate)
 
-    totjuros= pmt-fv
-
-    tlip = ti+totjuros
-    return [pmt,totjuros,tlip]
-
-
+    return pmt
+                    #PRESENTE VALOR É A DÍVIDA E FUTURO VALOR É ZERADO
+print(payment(0.08, 10, -10000, 0, 1))

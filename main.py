@@ -1,72 +1,59 @@
 from flask import Flask, request
-#from main import insertUsuario
-from src import getRates, payment
-from math import floor
-
-from main import teste,insertUsuario,calculo
+from src import payment
 
 app = Flask("cars")
-ipca=0
-
-@app.route("/cadastra/usuario", methods=["POST"])
-def cadastraUsuario():
-    body = request.get_json()
-    
-    if("nome" not in body):
-        return geraResponse(400, "O parametro nome é obrigatorio")
-    if("email" not in body):
-        return geraResponse(400, "O parametro email é obrigatorio")
-    if("senha" not in body):
-        return geraResponse(400, "O parametro senha é obrigatorio")
-
-    usuario = insertUsuario(body["nome"], body["email"], body["senha"])
-    return geraResponse(200, "Usuario criado", "user" ,usuario)
-
-
-@app.route('/api/teste', methods=["POST"])
-def testando():
-    body = request.get_json()
-    
-    test = teste(body["carprice"], body["downpayment"],body["tradeinvalue"],body["lengthofloan"],body["rate"])
-
-    return geraResponse(200, "parcela calculada",'parcela', test)
-
-
 
 @app.route('/api/calcaculateloan', methods=["POST"])
 
-def pagamento():
+def calcaculateloan():
     body = request.get_json()
 
     if("carprice" not in body):
-        return geraResponse(400, "O parametro carprice é obrigatorio")
-    if("downpayment" not in body and "tradeinvalue" not in body):
-        return geraResponse(400, "O parametro de trade é obrigatorio")
+        return generateResponse(400, "O parametro carprice é obrigatório")
+    if("downpayment" not in body):
+        return generateResponse(400, "O parametro downpayment é obrigatório")
+    if("tradeinvalue" not in body):
+        return generateResponse(400, "O parametro tradeinvalue é obrigatorio")
     if("lengthofloan" not in body):
-        return geraResponse(400, "O parametro lengthofloan é obrigatorio")
+        return generateResponse(400, "O parametro lengthofloan é obrigatorio")
     if("rate" not in body):
-        return geraResponse(400, "O parametro rate é obrigatorio")
+        return generateResponse(400, "O parametro rate é obrigatorio")
 
-    getRates.IPCA()
+    #IPCA = getRates.IPCA
+    #rate = getRates.getRates(body['rate'], IPCA).monthlyRealNetRate
+    rate = body["rate"]
     nper = body['lengthofloan']
-    dp = body['downpayment']
-    ti = body['tradeinvalue']
-    fv = body['carprice']
-    rate = getRates.getRates(body['rate'],ipca)
-    dados = payment.Payment(rate, nper,  dp, ti, fv)
-    parcela= floor(dados[0],2)
-    totalInterestPaid=dados[1]
-    totalLoanInterestPaid=dados[2]
-    Resposta = calculo(fv, dp, ti,totalInterestPaid,totalLoanInterestPaid, parcela)   
-    return geraResponse(200, "parcela calculada",'Resposta', Resposta)
+    pv = -(body['carprice'] - (body['downpayment'] + body['tradeinvalue']))
+    fv = 0
 
+    monthlyPayment =  payment.payment(rate, nper, pv, fv, 1)
+    monthlyPayment = round(monthlyPayment, 2)
 
-def geraResponse(status, mensagem, nome_do_conteudo=False, conteudo=False):
+    totalInterestPaid = (monthlyPayment * nper) - body["carprice"]
+    totalInterestPaid = round(totalInterestPaid, 2)
+
+    totalLoanAndInterestPaid = monthlyPayment * nper
+    totalLoanAndInterestPaid = round(totalLoanAndInterestPaid, 2)
+
+    response = {}
+    response["status"] = 200
+    response["message"] = "success"
+    response["carprice"] = body["carprice"]
+    response["downpayment"] = body["downpayment"]
+    response["tradeinvalue"] = body["tradeinvalue"]
+    response["totalInterestPaid"] = totalInterestPaid
+    response["totalLoanAndInterestPaid"] = totalLoanAndInterestPaid
+    response["monthlyPayment"] = monthlyPayment
+    
+    return response
+
+def generateResponse(status, message, contentName=False, content=False):
     response = {}
     response["status"] = status
-    response["mensagem"] = mensagem
-    if(nome_do_conteudo and conteudo):
-        response[nome_do_conteudo] = conteudo
+    response["message"] = message
+    if(contentName and content):
+        response[contentName] = content
+    
     return response
 
 app.run()
