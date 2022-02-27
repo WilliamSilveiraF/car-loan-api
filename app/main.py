@@ -1,5 +1,5 @@
 from flask import Flask, request
-from src import payment
+from .src import payment
 
 app = Flask("cars")
 
@@ -55,5 +55,3 @@ def generateResponse(status, message, contentName=False, content=False):
         response[contentName] = content
     
     return response
-
-app.run()
