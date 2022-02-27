@@ -2,10 +2,6 @@
 
 def payment(rate, nper, pv, fv=0, type=0):
     rate = rate / 12
-    print(f"Rate: {rate}\n"
-          f"Months: {nper}\n"
-          f"Presente Valor: {pv}\n"
-          f"Valor futuro: {fv}\n")
     # rate  - interest rate per month
     # nper  - number of periods (months)
     # pv    - present value
@@ -24,5 +20,3 @@ def payment(rate, nper, pv, fv=0, type=0):
         pmt /= (1.0 + rate)
 
     return pmt
-                    #PRESENTE VALOR É A DÍVIDA E FUTURO VALOR É ZERADO
-print(payment(0.08, 10, -10000, 0, 1))

@@ -1,7 +1,7 @@
 from flask import Flask, request
 from .src import payment
 
-app = Flask("cars")
+app = Flask(__name__)
 
 @app.route('/api/calcaculateloan', methods=["POST"])
 
@@ -29,7 +29,7 @@ def calcaculateloan():
     monthlyPayment =  payment.payment(rate, nper, pv, fv, 1)
     monthlyPayment = round(monthlyPayment, 2)
 
-    totalInterestPaid = (monthlyPayment * nper) - body["carprice"]
+    totalInterestPaid = (monthlyPayment * nper) + pv
     totalInterestPaid = round(totalInterestPaid, 2)
 
     totalLoanAndInterestPaid = monthlyPayment * nper
