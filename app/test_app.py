@@ -22,6 +22,7 @@ class TestPayment(unittest.TestCase):
             "lengthofloan": 18,
             "rate": 0.06
         }
+
         response = requests.post('https://car-loan-api.herokuapp.com/api/calcaculateloan', json=payload)
         
         print(f"Calling https://car-loan-api.herokuapp.com/api/calcaculateloan")
@@ -57,4 +58,100 @@ class TestPayment(unittest.TestCase):
             body["totalLoanAndInterestPaid"],
             52147.8,
             f"app.main.calculateloan - Error: the sum total loan and interest paid must be equal 52147.8 for {payload}"
+        )
+    
+    def test_api_calculate_loan_without_carprice(self):
+        payload = {
+            "downpayment": 0,
+            "tradeinvalue": 0,
+            "lengthofloan": 18,
+            "rate": 0.06
+        }
+
+        response = requests.post('https://car-loan-api.herokuapp.com/api/calcaculateloan', json=payload)
+        
+        print(f"Calling https://car-loan-api.herokuapp.com/api/calcaculateloan")
+        print(f"Status code: {response.status_code}")
+
+        self.assertEqual(
+            response.status_code, 
+            400, 
+            f"app.main.calculateloan - Error: if carprice is null, calculateloan api would be return 400 STATUS"
+        )
+
+    def test_api_calculate_loan_without_downpayment(self):
+        payload = {
+            "carprice": 50000,
+            "tradeinvalue": 0,
+            "lengthofloan": 18,
+            "rate": 0.06
+        }
+
+        response = requests.post('https://car-loan-api.herokuapp.com/api/calcaculateloan', json=payload)
+        
+        print(f"Calling https://car-loan-api.herokuapp.com/api/calcaculateloan")
+        print(f"Status code: {response.status_code}")
+
+        self.assertEqual(
+            response.status_code, 
+            400, 
+            f"app.main.calculateloan - Error: if downpayment is null, calculateloan api would be return 400 STATUS"
+        )
+    
+    def test_api_calculate_loan_without_tradeinvalue(self):
+        payload = {
+            "carprice": 50000,
+            "downpayment": 0,
+            "lengthofloan": 18,
+            "rate": 0.06
+        }
+
+        response = requests.post('https://car-loan-api.herokuapp.com/api/calcaculateloan', json=payload)
+        
+        print(f"Calling https://car-loan-api.herokuapp.com/api/calcaculateloan")
+        print(f"Status code: {response.status_code}")
+
+        self.assertEqual(
+            response.status_code, 
+            400, 
+            f"app.main.calculateloan - Error: if tradeinvalue is null, calculateloan api would be return 400 STATUS"
+        )
+
+    def test_api_calculate_loan_without_lengthofloan(self):
+        payload = {
+            "carprice": 50000,
+            "downpayment": 0,
+            "tradeinvalue": 0,
+            "rate": 0.06
+        }
+
+        response = requests.post('https://car-loan-api.herokuapp.com/api/calcaculateloan', json=payload)
+        
+        print(f"Calling https://car-loan-api.herokuapp.com/api/calcaculateloan")
+        print(f"Status code: {response.status_code}")
+
+        self.assertEqual(
+            response.status_code, 
+            400, 
+            f"app.main.calculateloan - Error: if lengthofloan is null, calculateloan api would be return 400 STATUS"
+        )
+
+
+    def test_api_calculate_loan_without_rate(self):
+        payload = {
+            "carprice": 50000,
+            "downpayment": 0,
+            "tradeinvalue": 0,
+            "lengthofloan": 18
+        }
+
+        response = requests.post('https://car-loan-api.herokuapp.com/api/calcaculateloan', json=payload)
+        
+        print(f"Calling https://car-loan-api.herokuapp.com/api/calcaculateloan")
+        print(f"Status code: {response.status_code}")
+
+        self.assertEqual(
+            response.status_code, 
+            400, 
+            f"app.main.calculateloan - Error: if rate is null, calculateloan api would be return 400 STATUS"
         )

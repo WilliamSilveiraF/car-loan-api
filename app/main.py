@@ -9,18 +9,16 @@ def calcaculateloan():
     body = request.get_json()
 
     if("carprice" not in body):
-        return generateResponse(400, "O parametro carprice é obrigatório")
+        return "Error - Must be have carprice parameter in request body", 400 
     if("downpayment" not in body):
-        return generateResponse(400, "O parametro downpayment é obrigatório")
+        return "Error - Must be have downpayment parameter in request body", 400
     if("tradeinvalue" not in body):
-        return generateResponse(400, "O parametro tradeinvalue é obrigatorio")
+        return "Error - Must be have tradeinvalue parameter in request body", 400
     if("lengthofloan" not in body):
-        return generateResponse(400, "O parametro lengthofloan é obrigatorio")
+        return "Error - Must be have lengthofloan parameter in request body", 400
     if("rate" not in body):
-        return generateResponse(400, "O parametro rate é obrigatorio")
+        return "Error - Must be have rate parameter in request body", 400
 
-    #IPCA = getRates.IPCA
-    #rate = getRates.getRates(body['rate'], IPCA).monthlyRealNetRate
     rate = body["rate"]
     nper = body['lengthofloan']
     pv = -(body['carprice'] - (body['downpayment'] + body['tradeinvalue']))
