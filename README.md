@@ -20,7 +20,7 @@ $ pip install -r requirements.txt
 
 ## Unitary Tests
 
-Run the commands below for execute the tests
+Run the commands below to execute the tests
 ```sh
 $ cd app
 ```
@@ -38,7 +38,7 @@ The application will be ready on port `http://localhost:5000/`
 
 ## Deploy
 
-We have a demo api running on heroku `https://car-loan-api.herokuapp.com/`, you can use this url for consume the api too
+We have a demo api running on heroku `https://car-loan-api.herokuapp.com/`, you can use this url to consume the api too
 
 ## Requests
 
