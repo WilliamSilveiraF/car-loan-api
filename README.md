@@ -66,3 +66,7 @@ payload = {
   "tradeinvalue": 0
 }
 ```
+
+##  Developed by
+- [WilliamSilveiraF](https://github.com/WilliamSilveiraF)
+- [Luan Costa](https://github.com/gatitoz-luan)
