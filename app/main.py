@@ -1,10 +1,11 @@
 from flask import Flask, request
+from flask_cors import CORS, cross_origin
 from .src import payment
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/api/calcaculateloan', methods=["POST"])
-
 def calcaculateloan():
     body = request.get_json()
 
@@ -38,6 +39,7 @@ def calcaculateloan():
     response["message"] = "success"
     response["carprice"] = body["carprice"]
     response["downpayment"] = body["downpayment"]
+    response["totalLoan"] = pv * -1
     response["tradeinvalue"] = body["tradeinvalue"]
     response["totalInterestPaid"] = totalInterestPaid
     response["totalLoanAndInterestPaid"] = totalLoanAndInterestPaid
