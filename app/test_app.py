@@ -23,9 +23,9 @@ class TestPayment(unittest.TestCase):
             "rate": 0.06
         }
 
-        response = requests.post('https://car-loan-api.herokuapp.com/api/calcaculateloan', json=payload)
+        response = requests.post('https://car-loan-api.herokuapp.com/api/calculateloan', json=payload)
         
-        print(f"Calling https://car-loan-api.herokuapp.com/api/calcaculateloan")
+        print(f"Calling https://car-loan-api.herokuapp.com/api/calculateloan")
         print(f"Status code: {response.status_code}")
 
         self.assertEqual(
@@ -68,9 +68,9 @@ class TestPayment(unittest.TestCase):
             "rate": 0.06
         }
 
-        response = requests.post('https://car-loan-api.herokuapp.com/api/calcaculateloan', json=payload)
+        response = requests.post('https://car-loan-api.herokuapp.com/api/calculateloan', json=payload)
         
-        print(f"Calling https://car-loan-api.herokuapp.com/api/calcaculateloan")
+        print(f"Calling https://car-loan-api.herokuapp.com/api/calculateloan")
         print(f"Status code: {response.status_code}")
 
         self.assertEqual(
@@ -87,9 +87,9 @@ class TestPayment(unittest.TestCase):
             "rate": 0.06
         }
 
-        response = requests.post('https://car-loan-api.herokuapp.com/api/calcaculateloan', json=payload)
+        response = requests.post('https://car-loan-api.herokuapp.com/api/calculateloan', json=payload)
         
-        print(f"Calling https://car-loan-api.herokuapp.com/api/calcaculateloan")
+        print(f"Calling https://car-loan-api.herokuapp.com/api/calculateloan")
         print(f"Status code: {response.status_code}")
 
         self.assertEqual(
@@ -106,9 +106,9 @@ class TestPayment(unittest.TestCase):
             "rate": 0.06
         }
 
-        response = requests.post('https://car-loan-api.herokuapp.com/api/calcaculateloan', json=payload)
+        response = requests.post('https://car-loan-api.herokuapp.com/api/calculateloan', json=payload)
         
-        print(f"Calling https://car-loan-api.herokuapp.com/api/calcaculateloan")
+        print(f"Calling https://car-loan-api.herokuapp.com/api/calculateloan")
         print(f"Status code: {response.status_code}")
 
         self.assertEqual(
@@ -125,9 +125,9 @@ class TestPayment(unittest.TestCase):
             "rate": 0.06
         }
 
-        response = requests.post('https://car-loan-api.herokuapp.com/api/calcaculateloan', json=payload)
+        response = requests.post('https://car-loan-api.herokuapp.com/api/calculateloan', json=payload)
         
-        print(f"Calling https://car-loan-api.herokuapp.com/api/calcaculateloan")
+        print(f"Calling https://car-loan-api.herokuapp.com/api/calculateloan")
         print(f"Status code: {response.status_code}")
 
         self.assertEqual(
@@ -145,9 +145,9 @@ class TestPayment(unittest.TestCase):
             "lengthofloan": 18
         }
 
-        response = requests.post('https://car-loan-api.herokuapp.com/api/calcaculateloan', json=payload)
+        response = requests.post('https://car-loan-api.herokuapp.com/api/calculateloan', json=payload)
         
-        print(f"Calling https://car-loan-api.herokuapp.com/api/calcaculateloan")
+        print(f"Calling https://car-loan-api.herokuapp.com/api/calculateloan")
         print(f"Status code: {response.status_code}")
 
         self.assertEqual(

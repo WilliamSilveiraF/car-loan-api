@@ -5,8 +5,8 @@ from .src import payment
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/api/calcaculateloan', methods=["POST"])
-def calcaculateloan():
+@app.route('/api/calculateloan', methods=["POST"])
+def calculateloan():
     body = request.get_json()
 
     if("carprice" not in body):

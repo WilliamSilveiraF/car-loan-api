@@ -43,7 +43,7 @@ We have a demo api running on heroku `https://car-loan-api.herokuapp.com/`, you 
 ## Requests
 
 ```python
-# Route: POST /api/calcaculateloan
+# Route: POST https://car-loan-api.herokuapp.com/api/calculateloan
 payload = {
   "carprice": 50000,  #required
   "downpayment": 0,   #required
@@ -62,6 +62,7 @@ payload = {
   "monthlyPayment": 2897.1,
   "status": 200,
   "totalInterestPaid": 2147.8,
+  "totalLoan": 50000,
   "totalLoanAndInterestPaid": 52147.8,
   "tradeinvalue": 0
 }
