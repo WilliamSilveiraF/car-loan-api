@@ -11,7 +11,7 @@ To install Car Loan, you need to clone car-loan-api repository and set your work
 1. You can use the command below to clone the car-loan-api repository on your terminal
 
 ```sh
-$ git clone -b Develop https://github.com/WilliamSilveiraF/car-loan-api.git
+$ git clone https://github.com/WilliamSilveiraF/car-loan-api.git
 ```
 
 2. Then install all project dependencies
